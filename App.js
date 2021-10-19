@@ -1,22 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import firebase from './database/firebase-db';
+import { StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
+import Coffee from './components/Coffee';
+import firebase from './database/firebase-db'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView> 
+      <View>
+        <Coffee />
+      </View>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
