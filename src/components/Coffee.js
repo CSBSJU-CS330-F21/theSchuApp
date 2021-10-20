@@ -1,10 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
-<<<<<<< HEAD
-import firebase from '../../database/firebase-db'
-=======
 import firebase from '../database/firebase-db'
->>>>>>> dalv001-firebase-db
 
 export default function Coffee() {
   return (
