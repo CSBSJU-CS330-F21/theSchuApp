@@ -1,25 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
 import firebase from '../database/firebase-db'
-
-const drinksSizes =[{
-  size: ['12oz', '16oz', '20oz']
-}]
-
-const drinksPrices =[{
-  price: [4.30, 4.93, 5.57]
-}]
-
-const drinksTaxes =[{
-  //sales tax if they use debit/credit chardet
-  taxes: [.31, .35, .40]
-}]
-
 
 export default function Coffee() {
   return (
     <SafeAreaView> 
-      <View>
+      <View style={{ alignItems: "center", justifyContent:"center"}}>
         <GetCoffeeOne />
         <GetCoffeeTwo />
         <GetCoffeeThree />
@@ -30,16 +16,7 @@ export default function Coffee() {
         <GetCoffeeEight />
         <GetCoffeeNine />
       </View>
-
-{/* Hard coded data below will be removed soon */}
-      <View>
-        <DrinkSize
-        size={drinksSizes[0].size[1]}/>
-        <DrinkPrices
-        price={drinksPrices[0].price[0]} />
-        <DrinkTaxes
-        taxes={drinksTaxes[0].taxes[0]} />
-      </View>
+  
     </SafeAreaView>
   );
 }
@@ -52,10 +29,14 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   flavors: {
-    fontSize:15, 
+    fontSize:13, 
     color:"grey",
     textAlign: "center",
-    marginBottom:10
+    marginBottom:10,
+    marginBottom:50
+  },
+  coffeeBox: {
+    alignItems: "center", justifyContent:"center", marginTop:15, marginBottom:30, padding:10, backgroundColor:"#eee", borderRadius:10, width:250
   },
   text:{
     fontSize:15,
@@ -101,7 +82,8 @@ const GetCoffeeOne = () => {
   })
 
   return(
-    <View >
+    <View style={styles.coffeeBox}>
+      
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -118,7 +100,7 @@ const GetCoffeeTwo = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -134,7 +116,7 @@ const GetCoffeeThree = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -151,7 +133,7 @@ const GetCoffeeFour = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -168,7 +150,7 @@ const GetCoffeeFive = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -185,7 +167,7 @@ const GetCoffeeSix = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -201,7 +183,7 @@ const GetCoffeeSeven = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -218,7 +200,7 @@ const GetCoffeeEight = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -235,7 +217,7 @@ const GetCoffeeNine = () => {
   })
 
   return(
-    <View>
+    <View style={styles.coffeeBox}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.flavors}>{flavors}</Text>
     </View>
@@ -253,9 +235,8 @@ const GetCoffeeNine = () => {
 const insertCoffee = () => {
   //insert new data into firebase
   setTimeout(() => {
-    firebase.database().ref('coffee/002').set({
-      name: 'Cold Brew 02',
-      size: '12oz',
+    firebase.database().ref('taxes/').set({
+      tax: [.31, .35, .40]
     }).then(() => {
       console.log('inserted');
     }).catch((error) => {
