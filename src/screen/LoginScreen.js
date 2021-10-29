@@ -1,18 +1,27 @@
-import React from 'react';
+
+import React, { useState } from "react";
 
 import {View, StyleSheet, Text, Button} from 'react-native';
 import { FilledButton } from '../components/FilledButton';
 import {Input} from '../components/Input';
+import {Error} from '../components/Error';
 
 
 
 export default function LoginScreen({ navigation }) {
+  const [username, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
   return (
     <><Input
       style={styles.input}
-      placeholder={'Username'} /><Input
+      placeholder={'Username (username)'}
+      onChangeText={(username) => setEmail(username)} /><Input
         style={styles.input}
-        placeholder={'Password'} secureTextEntry /><FilledButton title={'Login'} style={styles.loginButton}  onPress={() => navigation.navigate('EmployeeHomeScreen')} /></>
+        placeholder={'Password (password)'} secureTextEntry
+        onChangeText={(password) => setPassword(password)} /><FilledButton title={'Login'} style={styles.loginButton}  
+        onPress={() => {password == "password" && username == "Username"? navigation.navigate('EmployeeHomeScreen') : <Text>Error on Password, plase try again</Text>}} /></>
   );
 };
 
