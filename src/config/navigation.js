@@ -25,6 +25,7 @@ const SchuAppScreen = () => (
     <SchuAppStack.Screen
       name="CustomerMenuScreen"
       component={CustomerMenuScreen}
+      options={{ title: "The Schu Menu" }}
     />
   </SchuAppStack.Navigator>
 );

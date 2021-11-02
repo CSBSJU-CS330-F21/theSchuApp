@@ -1,11 +1,11 @@
-import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
-import firebase from '../database/firebase-db'
+import React, {useState} from 'react';
+import { StyleSheet, View, Text, SafeAreaView,Button, Image, ScrollView } from 'react-native';
+import firebase from '../../database/firebase-db'
 
 export default function Coffee() {
   return (
     <SafeAreaView> 
-      <View style={{ alignItems: "center", justifyContent:"center"}}>
+      <View style={{ backgroundColor:"white", alignItems: "center", justifyContent:"center"}}>
         <GetCoffeeOne />
         <GetCoffeeTwo />
         <GetCoffeeThree />
@@ -16,7 +16,6 @@ export default function Coffee() {
         <GetCoffeeEight />
         <GetCoffeeNine />
       </View>
-  
     </SafeAreaView>
   );
 }
@@ -26,17 +25,22 @@ const styles = StyleSheet.create({
   name: {
     fontSize:15,
     fontWeight: "900",
-    textAlign: "center"
+    
   },
   flavors: {
     fontSize:13, 
-    color:"grey",
-    textAlign: "center",
-    marginBottom:10,
-    marginBottom:50
+    color:"white",
+    
   },
   coffeeBox: {
-    alignItems: "center", justifyContent:"center", marginTop:15, marginBottom:30, padding:10, backgroundColor:"#eee", borderRadius:10, width:250
+    alignItems: "center", 
+    justifyContent:"center", 
+    marginTop:15, 
+    marginBottom:15,
+    backgroundColor:"#03a9f4", 
+    borderRadius:10, 
+    width:250, 
+    height:80
   },
   text:{
     fontSize:15,
@@ -68,6 +72,9 @@ const DrinkTaxes = (props) => {
     </View>
   )
 };
+
+
+
 
 
 
