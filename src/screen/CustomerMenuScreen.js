@@ -32,6 +32,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { Home, Menu, ReviewDetails, ViewOrder } from "../screen";
 import { COLORS, icons } from "../../constants";
 import { NavigationContainer } from "@react-navigation/native";
+import Coffee from "../components/Coffee";
 
 // create/display what each tab/icon is/do
 const BottomTab = createBottomTabNavigator();
@@ -41,7 +42,6 @@ const TopTab = createMaterialTopTabNavigator();
 const CustomerMenuScreen = () => {
 
   return (
-    
     <BottomTab.Navigator
       screenOptions={{
         showLabel: false,
@@ -53,7 +53,7 @@ const CustomerMenuScreen = () => {
       }}
     >
         <BottomTab.Screen
-          name="Menu"
+          name="theSchu"
           component={Menu}
           options={{
             headerShown: false,
