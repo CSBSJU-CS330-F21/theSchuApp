@@ -20,7 +20,7 @@ export default function Home({navigation}) {
         },
 
         buttonContainer1: {
-            backgroundColor: '#D3D3D3',
+            backgroundColor: 'grey',
             marginHorizontal: 135,
             marginVertical: 870,
             height: 27,
@@ -31,7 +31,6 @@ export default function Home({navigation}) {
             borderRadius: 25,
             borderWidth: 1,
             borderColor: 'transparent',
-            opacity: 0.6,
         },
 
         buttonContainer2: {
