@@ -13,7 +13,9 @@ const Stack = createStackNavigator();
 const SchuAppStack = createStackNavigator();
 const SchuAppScreen = () => (
   <SchuAppStack.Navigator>
-    <SchuAppStack.Screen name="Home" component={Home} />
+    <SchuAppStack.Screen name="Home" component={Home} options={{
+      headerShown: false
+    }} />
     <SchuAppStack.Screen
       name="EmployeeHomeScreen"
       component={EmployeeHomeScreen}
