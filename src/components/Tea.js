@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     return(
       <View style={styles.teaBox}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>${price}</Text>
+        
       </View>
       );
   }
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     return(
       <View style={styles.teaBox}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>${price}</Text>
+        
       </View>
       );
   }
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     return(
       <View style={styles.teaBox}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>${price}</Text>
+        
       </View>
       );
   }
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     return(
       <View style={styles.teaBox}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>${price}</Text>
+        
       </View>
       );
   }
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     return(
       <View style={styles.teaBox}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>${price}</Text>
+        
       </View>
       );
   }

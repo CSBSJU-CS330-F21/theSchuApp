@@ -59,7 +59,7 @@ const GetRefresherOne = () => {
   return(
     <View style={styles.refresherBox}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
+      
     </View>
     );
 }
@@ -73,7 +73,7 @@ const GetRefresherTwo = () => {
   return(
     <View style={styles.refresherBox}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
+      
     </View>
     );
 }
@@ -86,7 +86,7 @@ const GetRefresherThree = () => {
   return(
     <View style={styles.refresherBox}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
+      
     </View>
     );
 }
@@ -100,7 +100,7 @@ const GetRefresherFour = () => {
   return(
     <View style={styles.refresherBox}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>${price}</Text>
+      
     </View>
     );
 }

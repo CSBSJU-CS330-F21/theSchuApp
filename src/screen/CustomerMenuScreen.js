@@ -53,7 +53,7 @@ const CustomerMenuScreen = () => {
       }}
     >
         <BottomTab.Screen
-          name="theSchu"
+          name="Menu"
           component={Menu}
           options={{
             headerShown: false,
@@ -64,7 +64,7 @@ const CustomerMenuScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? COLORS.primary : COLORS.secondary,
+                  tintColor: focused ? COLORS.black : COLORS.secondary,
                 }}
                  />
             ),
@@ -81,7 +81,7 @@ const CustomerMenuScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? COLORS.primary : COLORS.secondary,
+                  tintColor: focused ? COLORS.black : COLORS.secondary,
                 }} />
             ),
           }} />
