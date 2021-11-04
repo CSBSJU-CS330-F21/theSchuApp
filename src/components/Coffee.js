@@ -73,11 +73,6 @@ const DrinkTaxes = (props) => {
   )
 };
 
-
-
-
-
-
 //GET coffee data from database
 const GetCoffeeOne = () => {
   var name = '';
