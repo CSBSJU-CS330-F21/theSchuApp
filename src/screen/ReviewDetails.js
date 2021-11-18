@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import CartOrder from "./listDisplay/cartOrder";
-import { SafeAreaView, View, StyleSheet, FlatList, Text } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  Image,
+  Modal,
+} from "react-native";
 import data from "../../drinkData";
-const ReviewDetails = () => {
+// import { SwipeListView } from "react-native-swipe-list-view";
+// import { COLORS, icons } from "../../constants";
+const ReviewDetails = ({ navigation }) => {
   // Declare a new list variable, which we'll call set
   const [lists, setLists] = useState(data);
 
@@ -22,83 +33,53 @@ const ReviewDetails = () => {
           );
         }}
       />
+      {/* Show total cost of all drinks */}
+      <View>
+        <Text>Total Cost: </Text>
+      </View>
+      {/* Order button and PickUp Time Selection*/}
+      <View
+        style={{
+          padding: 5,
+          alignItems: "center",
+          flexDirection: "row",
+          alignContent: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            width: 200,
+            height: 50,
+            backgroundColor: "orange",
+            alignItems: "center",
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+          }}
+          onPress={() => navigation.navigate("Payment")}
+        >
+          <Text>Order</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            width: 125,
+            height: 50,
+            backgroundColor: "orange",
+            alignItems: "center",
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+          }}
+        >
+          <Text>PickUp Time</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
 
 export default ReviewDetails;
-
-// import { StatusBar, useState } from "expo-status-bar";
-// import React from "react";
-// import {
-//   StyleSheet,
-//   Text,
-//   View,
-//   TouchableOpacity,
-//   ScrollView,
-// } from "react-native";
-// import data from "../drinkData";
-
-// export default function App() {
-//   // Declare a new list variable, which we'll call set
-//   // const [lists, updateList] = useState(data);
-
-//   // const deleteItem = (index) => {
-//   //   const arr = [...lists];
-//   //   arr.splice(index, 1);
-//   //   updateList(arr);
-//   // };
-
-//   return (
-//     <View style={styles.container}>
-//       <StatusBar hidden />
-//         {data.map(({ drink, addon }, index) => {
-//           return (
-//             //what when we touch certain stuff on screen
-//             <View style={styles.container}>
-//               <Text style={styles.itemHeading}>{drink}</Text>
-//               <View>
-//                 {addon.map((addon) => (
-//                   <Text style={styles.itemSubHeading}>{addon}</Text>
-//                 ))}
-//               </View>
-//               <button>edit</button>
-//               <button>delete</button>
-//             </View>
-//           );
-//         })}
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 10,
-//     backgroundColor: "#fff",
-//     shadowColor: "#ccc",
-//     shadowOffset: { width: 3, height: 3 },
-//     shadowOpacity: 0.9,
-//     marginVertical: 10,
-//   },
-//   deleteBox: {
-//     backgroundColor: "red",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     width: 100,
-//     height: 80,
-//   },
-
-//   itemHeading: {
-//     fontWeight: "bold",
-//     fontSize: 20,
-//   },
-
-//   deletingText: {
-//     color: "#fff",
-//     fontWeight: "bold",
-//   },
-
-//   itemSubHeading: {
-//     fontSize: 15,
-//   },
-// });
