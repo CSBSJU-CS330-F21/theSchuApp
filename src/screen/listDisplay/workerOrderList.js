@@ -7,17 +7,50 @@ import {
   Animated,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  SnapshotViewIOSBase,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import firebase from '../../../database/firebase-db'
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
+const names = [];
+const drinks = [];
 
 const ItemBox = (props) => {
+
+  const GetDataOne = () => {
+    var name = '';
+  
+    firebase.database().ref('orders').on('value', function(snap)  {
+
+        snap.forEach(function(childnodes){
+          //console.log(childnodes.val().name);
+          names.push(childnodes.val().name);
+          drinks.push(childnodes.val().drink);
+        })
+    })
+    
+      return(
+        
+        <View>
+          <Text>
+            Name: {names}{"\n"}
+            Drinks: {drinks}
+          </Text>
+        </View>
+      )
+    
+
+
+  }
+
+
   const rightSwipe = (progress, dragX) => {
     const scale = dragX.interpolate({
       inputRange: [-50, 0.5],
       outputRange: [1, 0.1],
     });
+  
     return (
       <TouchableOpacity onPress={props.handleDelete} activeOpacity={0.6}>
         <View style={styles.deleteBox}>
@@ -27,7 +60,7 @@ const ItemBox = (props) => {
         </View>
       </TouchableOpacity>
     );
-  };
+  }
 
   // var state = Boolean(false);
 
@@ -49,36 +82,32 @@ const ItemBox = (props) => {
   //   );
   // };
 
-  return (
-    <Swipeable renderRightActions={rightSwipe} overshootRight={false}>
-      <TouchableWithoutFeedback
-      // onPress={() => {
-      //   isSelected(state);
-      //   alert(state);
-      // }}
-      >
-        <View style={styles.container}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              paddingVertical: 5,
-            }}
-          >
-            <Text style={styles.itemHeading}>{props.data.name}</Text>
-            <Text style={styles.itemHeading}>{props.data.pickup}</Text>
+    return (
+      <Swipeable renderRightActions={rightSwipe} overshootRight={false}>
+        <TouchableWithoutFeedback
+        // onPress={() => {
+        //   isSelected(state);
+        //   alert(state);
+        // }}
+        >
+          <View style={styles.container}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                paddingVertical: 5,
+              }}
+            >
+              <GetDataOne/>
+             
+            </View>
+          
           </View>
-          <Text style={styles.itemSubHeading}>{props.data.ExtraDetail}</Text>
+        </TouchableWithoutFeedback>
+      </Swipeable>
+    );
+  
 
-          {props.data.drink.map((item, index) => (
-            <Text key={index} style={styles.itemSubHeading}>
-              {item}
-            </Text>
-          ))}
-        </View>
-      </TouchableWithoutFeedback>
-    </Swipeable>
-  );
 };
 
 export default ItemBox;
