@@ -1,8 +1,19 @@
   import React, { useState } from 'react';
   import { StyleSheet, View, Text, SafeAreaView, Image, ScrollView, Button, Modal, TouchableOpacity, Alert, Pressable} from 'react-native';
   import firebase from '../../database/firebase-db'
+  
 
   export default function Coffee() {
+    // const[cartList, setCartList] = React.useState([]);
+
+    // function addingToList (GetCoffeeOne){
+
+    //   const newItem ={
+    //     drink: GetCoffeeOne.name,
+        
+    //   }
+    //   cartList.push(newItem)
+    // }
     
     return (
       <SafeAreaView> 
@@ -116,7 +127,7 @@
   };
 
   //GET coffee data from database
-  const GetCoffeeOne = () => {
+  export const GetCoffeeOne = (props) => {
     var name = '';
     var flavors = '';
     var count = 0;
@@ -140,7 +151,6 @@
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {setModalVisible(!modalVisible); count = count + 1;
