@@ -25,7 +25,7 @@ const Menu = () => {
         }}
         variant="primary"
       >
-        <Tab.Item
+        {/* <Tab.Item
           title="Coffee"
           titleStyle={{ fontSize: 10 }}
           icon={{ name: "cafe-outline", type: "ionicon" }}
@@ -44,7 +44,7 @@ const Menu = () => {
           title="Refreshers"
           titleStyle={{ fontSize: 10 }}
           icon={{ name: "pint-outline", type: "ionicon" }}
-        />
+        /> */}
         <Tab.Item
           title="Test"
           titleStyle={{ fontSize: 10 }}
@@ -52,9 +52,8 @@ const Menu = () => {
         />
       </Tab>
       <ScrollView>
-
       <TabView value={index} onChange={setIndex} animationType="spring">
-        <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
+        {/* <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
         
           <Coffee />
         </TabView.Item>
@@ -66,7 +65,7 @@ const Menu = () => {
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
           <Refreshers/>
-        </TabView.Item>
+        </TabView.Item> */}
         <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
           <CoffeeTest/>
         </TabView.Item>

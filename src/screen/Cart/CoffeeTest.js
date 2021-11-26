@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import firebase from "../../../database/firebase-db";
 import Coffee from "../../../Data/Coffee";
+import Products from "../Products";
 
 export default function CoffeeTest({ navigation }) {
   
@@ -22,17 +23,8 @@ export default function CoffeeTest({ navigation }) {
   const PAGE_CART = "cart";
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
-  const [products] = useState([
-    {
-      name: "Battery",
-      price: "3.99",
-    },
-    {
-      name: "Blanket",
-      price: "10.99",
-    },
-  ]);
-
+ 
+  // appends cart array 
   const addToCart = (product) => {
     console.log("we are in");
     setCart([...cart, { ...product }]);
@@ -41,21 +33,7 @@ export default function CoffeeTest({ navigation }) {
   const removeFromCart = (productToRemove) => {
     setCart(cart.filter((product) => product !== productToRemove));
   };
-  const renderProducts = () => (
-    <>
-      <Text>Products:</Text>
-      {products.map((product, index) => (
-        <View key={index}>
-          <Text>{product.name}</Text>
-          <Text>{product.price}</Text>
 
-          <Button onPress={() => addToCart(product)} title="button">
-            Add to cart
-          </Button>
-        </View>
-      ))}{" "}
-    </>
-  );
 
   const renderCart = () => (
     <>
@@ -83,13 +61,13 @@ export default function CoffeeTest({ navigation }) {
   return (
     <ScrollView>
       <View>
-        <Text>{page === PAGE_PRODUCTS && renderProducts()}</Text>
+        <Text>{page === PAGE_PRODUCTS && <Products addToCart = {addToCart}/>}</Text>
         <Text>{page === PAGE_CART && renderCart()}</Text>
       </View>
 
       <View>
         <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
-        <Text>{cart.length}</Text>
+        <Text>{cart.length}</Text> 
       </View>
       <View>
         <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
