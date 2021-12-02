@@ -146,7 +146,7 @@ export default function Home({navigation}) {
 
                 <TouchableOpacity onPress={
                         () => {
-                            navigation.push('CustomerMenuScreen');
+                            navigation.push('CoffeeTest');
                         }
                     }
                     style={

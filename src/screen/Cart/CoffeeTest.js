@@ -16,9 +16,14 @@ import {
 import firebase from "../../../database/firebase-db";
 import Coffee from "../../../Data/Coffee";
 import Products from "../Products";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {
+  createBottomTabNavigator,
+  BottomTabBar,
+} from "@react-navigation/bottom-tabs";
 
 export default function CoffeeTest({ navigation }) {
-  
+  const BottomTab = createBottomTabNavigator();
   const PAGE_PRODUCTS = "products";
   const PAGE_CART = "cart";
   const [cart, setCart] = useState([]);
@@ -42,10 +47,6 @@ export default function CoffeeTest({ navigation }) {
         <View key={index}>
           <Text>{product.name}</Text>
           <Text>{product.price}</Text>
-
-          <Button onPress={() => addToCart(product)} title="button">
-            Add to cart
-          </Button>
           <Button title="remove" onPress={() => removeFromCart(product)}>
             Remove
           </Button>
@@ -64,7 +65,6 @@ export default function CoffeeTest({ navigation }) {
         <Text>{page === PAGE_PRODUCTS && <Products addToCart = {addToCart}/>}</Text>
         <Text>{page === PAGE_CART && renderCart()}</Text>
       </View>
-
       <View>
         <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
         <Text>{cart.length}</Text> 
