@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import firebase from "../../../database/firebase-db";
 import Coffee from "../../../Data/Coffee";
+import { Tab, TabView } from 'react-native-elements';
 import Products from "../Products";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import {
@@ -42,7 +43,6 @@ export default function CoffeeTest({ navigation }) {
 
   const renderCart = () => (
     <>
-      <Text>Cart:</Text>
       {cart.map((product, index) => (
         <View key={index}>
           <Text>{product.name}</Text>
@@ -58,22 +58,55 @@ export default function CoffeeTest({ navigation }) {
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
-
+const [index, setIndex] = React.useState(0);
   return (
+    <><Tab
+      value={index}
+      onChange={(e) => setIndex(e)}
+      indicatorStyle={{
+        backgroundColor: "white",
+        height: 3,
+      }}
+      variant="primary"
+    >
+      <Tab.Item
+        title="Menu"
+        titleStyle={{ fontSize: 10 }}
+        icon={{ name: "pint-outline", type: "ionicon" }} />
+        <Tab.Item
+          title={cart.length} 
+          titleStyle={{ fontSize: 10 }}
+          icon={{ name: "pint-outline", type: "ionicon" }}
+        
+        />
+    </Tab>
+    <TabView value={index} onChange={setIndex} animationType="spring">
+    <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>  
     <ScrollView>
-      <View>
-        <Text>{page === PAGE_PRODUCTS && <Products addToCart = {addToCart}/>}</Text>
-        <Text>{page === PAGE_CART && renderCart()}</Text>
-      </View>
-      <View>
-        <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
-        <Text>{cart.length}</Text> 
-      </View>
-      <View>
-        <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
-        <Text>{cart.length}</Text>
-      </View>
-    </ScrollView>
+        <Text>{<Products addToCart={addToCart} />}</Text>
+        </ScrollView>
+        </TabView.Item>
+
+        <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>   
+        <ScrollView>
+        <Text>{renderCart()}</Text>
+        <Button title = "Checkout"/>
+        </ScrollView>
+        </TabView.Item>
+      </TabView>
+        {/* <View>
+          <Text>{page === PAGE_PRODUCTS && <Products addToCart={addToCart} />}</Text>
+          <Text>{page === PAGE_CART && renderCart()}</Text>
+        </View>
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
+          <Text>{cart.length}</Text>
+        </View>
+
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute-right', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
+        </View> */}
+      </>
   );
 }
 
@@ -86,5 +119,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 150,
     height: 150,
+  }, 
+  bottomView:{
+    width: '100%', 
+    height: 50, 
+    backgroundColor: '#FF9800', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
   },
+
+  textStyle:{
+
+    color: '#fff',
+    fontSize:22
+  }
+  
 });
