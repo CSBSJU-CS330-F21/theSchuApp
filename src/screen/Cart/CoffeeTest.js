@@ -15,9 +15,9 @@ import {
 } from "react-native";
 import firebase from "../../../database/firebase-db";
 import Coffee from "../../../Data/Coffee";
-import { Tab, TabView } from 'react-native-elements';
+import { Tab, TabView } from "react-native-elements";
 import Products from "../Products";
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   createBottomTabNavigator,
   BottomTabBar,
@@ -29,10 +29,10 @@ export default function CoffeeTest({ navigation }) {
   const PAGE_CART = "cart";
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
- 
-  // appends cart array 
+
+  // appends cart array
   const addToCart = (product) => {
-    console.log("we are in");
+    console.log("added to cart");
     setCart([...cart, { ...product }]);
   };
 
@@ -40,12 +40,12 @@ export default function CoffeeTest({ navigation }) {
     setCart(cart.filter((product) => product !== productToRemove));
   };
 
-
   const renderCart = () => (
     <>
       {cart.map((product, index) => (
         <View key={index}>
           <Text>{product.name}</Text>
+          {/* add flavors */}
           <Text>{product.price}</Text>
           <Button title="remove" onPress={() => removeFromCart(product)}>
             Remove
@@ -55,46 +55,65 @@ export default function CoffeeTest({ navigation }) {
     </>
   );
 
-  const navigateTo = (nextPage) => {
-    setPage(nextPage);
-  };
-const [index, setIndex] = React.useState(0);
+  //INSERT data from the data base
+  const insertOrder = () => {
+    const orderNumber = Math.floor(Math.random() * 100000);
+    //insert new data into firebase
+    //if cart is empty, do not insert throw error
+      firebase.database().ref('orders/' + orderNumber).set({
+        // tax: [.31, .35, .40],
+        // // orderNumber will be incremented by 1
+        // orderNumber: 1,
+        cart: cart
+      }).then(() => {
+        console.log('inserted');
+      }).catch((error) => {
+        console.log(error)
+      });
+    
+  }
+
+ 
+  const [index, setIndex] = React.useState(0);
   return (
-    <><Tab
-      value={index}
-      onChange={(e) => setIndex(e)}
-      indicatorStyle={{
-        backgroundColor: "white",
-        height: 3,
-      }}
-      variant="primary"
-    >
-      <Tab.Item
-        title="Menu"
-        titleStyle={{ fontSize: 10 }}
-        icon={{ name: "pint-outline", type: "ionicon" }} />
+    <>
+      
+      <Tab
+        value={index}
+        onChange={(e) => setIndex(e)}
+        indicatorStyle={{
+          backgroundColor: "white",
+          height: 3,
+        }}
+        variant="primary"
+      >
         <Tab.Item
-          title={cart.length} 
+          title="Menu"
           titleStyle={{ fontSize: 10 }}
-          icon={{ name: "pint-outline", type: "ionicon" }}
-        
+          icon={{ name: "menu", type: "ionicon" }}
         />
-    </Tab>
-    <TabView value={index} onChange={setIndex} animationType="spring">
-    <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>  
-    <ScrollView>
-        <Text>{<Products addToCart={addToCart} />}</Text>
-        </ScrollView>
+        <Tab.Item
+          title= {"Cart"+ " " + "("+ cart.length +")"}
+          titleStyle={{ fontSize: 10 }}
+          icon={{ name: "cart-outline", type: "ionicon" }}
+        />
+      </Tab>
+      <TabView value={index} onChange={setIndex} animationType="spring">
+        <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
+          <ScrollView>
+            <Text>{<Products addToCart={addToCart} />}</Text>
+          </ScrollView>
         </TabView.Item>
 
-        <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>   
-        <ScrollView>
-        <Text>{renderCart()}</Text>
-        <Button title = "Checkout"/>
-        </ScrollView>
+        <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
+          <ScrollView>
+            <Text>{renderCart()}</Text>
+            <Button title="Checkout" onPress={() => insertOrder()}/>
+          </ScrollView>
+         
         </TabView.Item>
       </TabView>
-        {/* <View>
+      {/* <View>
           <Text>{page === PAGE_PRODUCTS && <Products addToCart={addToCart} />}</Text>
           <Text>{page === PAGE_CART && renderCart()}</Text>
         </View>
@@ -106,7 +125,7 @@ const [index, setIndex] = React.useState(0);
         <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute-right', bottom: -100 }}>
           <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
         </View> */}
-      </>
+    </>
   );
 }
 
@@ -119,21 +138,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 150,
     height: 150,
-  }, 
-  bottomView:{
-    width: '100%', 
-    height: 50, 
-    backgroundColor: '#FF9800', 
-    justifyContent: 'center', 
-    alignItems: 'center',
-    position: 'absolute',
+  },
+  bottomView: {
+    width: "100%",
+    height: 50,
+    backgroundColor: "#FF9800",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
     bottom: 0,
   },
 
-  textStyle:{
-
-    color: '#fff',
-    fontSize:22
-  }
-  
+  textStyle: {
+    color: "#fff",
+    fontSize: 22,
+  },
 });

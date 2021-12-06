@@ -342,7 +342,7 @@
   //WILL BE A FUTURE FEATURE
   //DELETE data from the database
   //INSERT data from the data base
-  const insertCoffee = () => {
+  const insertOrder = () => {
     //insert new data into firebase
     setTimeout(() => {
       firebase.database().ref('taxes/').set({
@@ -368,3 +368,17 @@
     });
 
   }
+
+
+  {/* <View>
+          <Text>{page === PAGE_PRODUCTS && <Products addToCart={addToCart} />}</Text>
+          <Text>{page === PAGE_CART && renderCart()}</Text>
+        </View>
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
+          <Text>{cart.length}</Text>
+        </View>
+
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute-right', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
+        </View> */}
