@@ -57,29 +57,40 @@ export default function Products({ addToCart }) {
 
   return (
     <>
-      {/* <Text>Products:</Text> */}
-      {products.map((product, index) => (
-        <View style={styles.container} key={index}>
-          <Text>{product.name}</Text>
-          {/* This section will display flavors <Text>{product.price}</Text> */}
-
-          <Button onPress={() => addToCart(product)} title="+"/>
-        </View>
-      ))}{" "}
+      <View>
+        <Text style={styles.drinkTitle}>Specialty Drinks</Text>
+        <Text>
+          {products.map((product, index) => (
+            <ScrollView key={index}>
+              <View style={styles.container} key={index}>
+              <Text>{product.name}</Text>
+              {/* This section will display flavors <Text>{product.price}</Text> */}
+              <Button onPress={() => addToCart(product)} title="+" />
+              </View>
+              
+            </ScrollView>
+          ))}{" "}
+        </Text>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width:70,
-    height:20,
-    backgroundColor: "white",
+  drinkTitle: {
+    fontSize: 26,
+    fontWeight: "800",
     margin: 10,
-    marginHorizontal: 10, 
-    marginVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    
+  },
+  container: {
+    width: 150,
+    height: 70,
+    padding: 10,
+    backgroundColor: "blue",
+    margin: 10,
+    borderRadius: 10,
+
   },
   logo: {
     alignItems: "center",
