@@ -73,7 +73,7 @@ export default function CoffeeTest({ navigation }) {
     
   }
 
- 
+  const [modalVisible, setModalVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   return (
     <>
@@ -108,7 +108,31 @@ export default function CoffeeTest({ navigation }) {
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
           <ScrollView>
             <Text>{renderCart()}</Text>
-            <Button title="Checkout" onPress={() => insertOrder()}/>
+            <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {setModalVisible(!modalVisible); insertOrder();}
+      }>
+              <Text style={styles.textStyle}>Proceed to Checkout</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}
+      ><Text>Checkout</Text></Pressable>
+            {/* <Button title="Checkout" onPress={() => insertOrder()}/> */}
           </ScrollView>
          
         </TabView.Item>
@@ -153,4 +177,30 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 22,
   },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  }
 });
