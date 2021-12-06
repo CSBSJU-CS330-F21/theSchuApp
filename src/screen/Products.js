@@ -54,7 +54,7 @@ export default function Products({ addToCart }) {
       falvors: "Carmel, Vanilla",
     },
   ]);
-
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <View>
@@ -65,6 +65,7 @@ export default function Products({ addToCart }) {
               <View style={styles.container} key={index}>
               <Text>{product.name}</Text>
               {/* This section will display flavors <Text>{product.price}</Text> */}
+       
               <Button onPress={() => addToCart(product)} title="+" />
               </View>
               
@@ -97,5 +98,40 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 150,
     height: 150,
+  },
+  input: {
+    paddingTop: 10,
+    borderColor: "grey",
+    borderBottomWidth: 2,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "400",
+    textAlign: "center",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
+  },
+  input: {
+    paddingTop: 10,
+    borderColor: "grey",
+    borderBottomWidth: 2,
+  },
+  button: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center",
+  },
+  modal: {
+    width: "100%",
+    height: "90%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
