@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   Button,
+  TextInput,
   Modal,
   TouchableOpacity,
   Alert,
@@ -40,6 +41,18 @@ export default function CoffeeTest({ navigation }) {
     setCart(cart.filter((product) => product !== productToRemove));
   };
 
+   // This is to manage Modal State
+   const [isModalVisible, setModalVisible] = useState(false);
+  
+   // This is to manage TextInput State
+   const [inputValue, setInputValue] = useState("");
+ 
+   // Create toggleModalVisibility function that will
+   // Open and close modal upon button clicks.
+   const toggleModalVisibility = () => {
+       setModalVisible(!isModalVisible);
+   };
+
   const renderCart = () => (
     <>
       {cart.map((product, index) => (
@@ -64,16 +77,19 @@ export default function CoffeeTest({ navigation }) {
         // tax: [.31, .35, .40],
         // // orderNumber will be incremented by 1
         // orderNumber: 1,
+        displayName: inputValue,
         cart: cart
+        
       }).then(() => {
         console.log('inserted');
+        console.log(inputValue);
       }).catch((error) => {
         console.log(error)
       });
     
   }
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, isSetModalVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   return (
     <>
@@ -93,7 +109,7 @@ export default function CoffeeTest({ navigation }) {
           icon={{ name: "menu", type: "ionicon" }}
         />
         <Tab.Item
-          title= {"Cart"+ " " + "("+ cart.length +")"}
+          title= {"CARTTESTTEST"+ " " + "("+ cart.length +")"}
           titleStyle={{ fontSize: 10 }}
           icon={{ name: "cart-outline", type: "ionicon" }}
         />
@@ -105,37 +121,34 @@ export default function CoffeeTest({ navigation }) {
           </ScrollView>
         </TabView.Item>
 
+        
+
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
           <ScrollView>
-            <Text>{renderCart()}</Text>
-            <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
+            {renderCart()}
+             {/**  We are going to create a Modal with Text Input. */}
+             <Button title="Purchase" onPress={toggleModalVisibility} />
+  
+  {/** This is our modal component containing textinput and a button */}
+  <Modal animationType="slide" 
+         transparent visible={isModalVisible} 
+         presentationStyle="overFullScreen" 
+         onDismiss={toggleModalVisibility}>
+      <View style={styles.viewWrapper}>
           <View style={styles.modalView}>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible); insertOrder();}
-      }>
-              <Text style={styles.textStyle}>Proceed to Checkout</Text>
-            </Pressable>
+              <TextInput placeholder="Enter something..." 
+                         value={inputValue} style={styles.textInput} 
+                         onChangeText={(value) => setInputValue(value)} />
+
+              {/** This button is responsible to close the modal */}
+              <Button title="Close" onPress={toggleModalVisibility} />
+              <Button title="Confirm Order" onPress={() => insertOrder()} />
           </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      ><Text>Checkout</Text></Pressable>
-            {/* <Button title="Checkout" onPress={() => insertOrder()}/> */}
+      </View>
+  </Modal>
           </ScrollView>
-         
         </TabView.Item>
+
       </TabView>
       {/* <View>
           <Text>{page === PAGE_PRODUCTS && <Products addToCart={addToCart} />}</Text>
