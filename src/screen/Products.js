@@ -28,9 +28,6 @@ export default function Products({ addToCart }) {
 
   const [products] = useState([
     {
-      name: "specialy drinks"
-    },
-    {
       name: "The Schu",
       falvors: "Dark Chocolate, Toasted Marshmallow",
     },
@@ -70,53 +67,102 @@ export default function Products({ addToCart }) {
   ]);
   return (
     <>
-
       <View>
-        <Text style={styles.drinkTitle}>Specialty Drinks</Text>
+        <Text style={styles.drinkTitle}>Coffee</Text>
         <Text>
           {products.map((product, index) => (
-     
-              <View style={styles.container} key={index}>
-              <Text>{product.name}</Text>
-              {/* This section will display flavors <Text>{product.price}</Text> */}
-              <Button onPress={() => addToCart(product)} title="+" />
+            <View key={index}>
+              <View style={styles.container}>
+                <Text>{product.name}</Text>
+                {/* This section will display flavors <Text>{product.price}</Text> */}
+                <Button onPress={() => addToCart(product)} title="+" />
               </View>
-
+            </View>
           ))}{" "}
         </Text>
-        <Text style={styles.drinkTitle}> huge COCK</Text>
+        
+        <Text style={styles.drinkTitle}>Classic Drinks</Text>
         <Text>
-          
           {coffeeProducts.map((product, index) => (
-     
-              <View style={styles.container} key={index}>
-              <Text>{product.name}</Text>
-              {/* This section will display flavors <Text>{product.price}</Text> */}
-              <Button onPress={() => addToCart(product)} title="+" />
-              </View>
+            <View key={index}>
+              <View style={styles.container}>
+                <Text>{product.name}</Text>
+                {/* This section will display flavors <Text>{product.price}</Text> */}
 
+                <Button onPress={() => addToCart(product)} title="+" />
+              </View>
+            </View>
+          ))}{" "}
+        </Text>
+
+        <Text style={styles.drinkTitle}>Refreshers</Text>
+        <Text>
+          {coffeeProducts.map((product, index) => (
+            <View key={index}>
+              <View style={styles.container}>
+                <Text>{product.name}</Text>
+                {/* This section will display flavors <Text>{product.price}</Text> */}
+
+                <Button onPress={() => addToCart(product)} title="+" />
+              </View>
+            </View>
+          ))}{" "}
+        </Text>
+
+        <Text style={styles.drinkTitle}>Teas</Text>
+        <Text>
+          {coffeeProducts.map((product, index) => (
+            <View key={index}>
+              <View style={styles.container}>
+                <Text>{product.name}</Text>
+                {/* This section will display flavors <Text>{product.price}</Text> */}
+
+                <Button onPress={() => addToCart(product)} title="+" />
+              </View>
+            </View>
           ))}{" "}
         </Text>
       </View>
-
     </>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   drinkTitle: {
     fontSize: 26,
     fontWeight: "800",
     margin: 10,
-    
+    position: "relative",
+    left: 0,
+  
   },
   container: {
     width: 150,
     height: 70,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "white",
+    borderColor: "black",
+    borderStyle: "solid",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    borderRadius: 10,
+    padding: 10,
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
   },
   logo: {
     alignItems: "center",
