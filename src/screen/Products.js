@@ -15,7 +15,21 @@ import {
 } from "react-native";
 
 export default function Products({ addToCart }) {
+  const [coffeeProducts] = useState([
+    {
+      name: "specialy drinks",
+      falvors: "lkajdfs",
+    },
+    {
+      name: "The Schu",
+      falvors: "Dark Chocolate, Toasted Marshmallow",
+    },
+  ]);
+
   const [products] = useState([
+    {
+      name: "specialy drinks"
+    },
     {
       name: "The Schu",
       falvors: "Dark Chocolate, Toasted Marshmallow",
@@ -54,28 +68,42 @@ export default function Products({ addToCart }) {
       falvors: "Carmel, Vanilla",
     },
   ]);
-  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
+
       <View>
         <Text style={styles.drinkTitle}>Specialty Drinks</Text>
         <Text>
           {products.map((product, index) => (
-            <ScrollView key={index}>
+     
               <View style={styles.container} key={index}>
               <Text>{product.name}</Text>
               {/* This section will display flavors <Text>{product.price}</Text> */}
-       
               <Button onPress={() => addToCart(product)} title="+" />
               </View>
-              
-            </ScrollView>
+
+          ))}{" "}
+        </Text>
+        <Text style={styles.drinkTitle}> huge COCK</Text>
+        <Text>
+          
+          {coffeeProducts.map((product, index) => (
+     
+              <View style={styles.container} key={index}>
+              <Text>{product.name}</Text>
+              {/* This section will display flavors <Text>{product.price}</Text> */}
+              <Button onPress={() => addToCart(product)} title="+" />
+              </View>
+
           ))}{" "}
         </Text>
       </View>
+
     </>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   drinkTitle: {
@@ -87,11 +115,8 @@ const styles = StyleSheet.create({
   container: {
     width: 150,
     height: 70,
-    padding: 10,
-    backgroundColor: "blue",
-    margin: 10,
-    borderRadius: 10,
-
+    alignItems: "center",
+    justifyContent: "center",
   },
   logo: {
     alignItems: "center",

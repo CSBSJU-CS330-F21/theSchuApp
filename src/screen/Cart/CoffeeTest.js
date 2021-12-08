@@ -116,9 +116,9 @@ export default function CoffeeTest({ navigation }) {
       </Tab>
       <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
-          <ScrollView>
-            <Text>{<Products addToCart={addToCart} />}</Text>
-          </ScrollView>
+        <ScrollView key={index} horizontal = {true} style = {{flexDirection:"column"}}>
+         {<Products addToCart={addToCart} />}
+        </ScrollView>
         </TabView.Item>
 
         
