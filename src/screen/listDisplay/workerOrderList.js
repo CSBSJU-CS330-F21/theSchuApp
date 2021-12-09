@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import {
   View,
   Text,
@@ -16,33 +16,32 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 const names = [];
 const drinks = [];
 
+function GetDataOne(props){
+  var name = '';
+
+  firebase.database().ref('orders').on('value', function(snap)  {
+
+      snap.forEach(function(childnodes){
+        //console.log(childnodes.val().name);
+        names.push(childnodes.val());
+        drinks.push(childnodes.val().drink);
+      })
+  })
+  return (
+    <View>
+      <Text>
+        {props}
+      </Text>
+    </View>
+  )
+  
+
+
+}
+
 const ItemBox = (props) => {
 
-  const GetDataOne = () => {
-    var name = '';
-  
-    firebase.database().ref('orders').on('value', function(snap)  {
 
-        snap.forEach(function(childnodes){
-          //console.log(childnodes.val().name);
-          names.push(childnodes.val().name);
-          drinks.push(childnodes.val().drink);
-        })
-    })
-    
-      return(
-        
-        <View>
-          <Text>
-            Name: {names}{"\n"}
-            Drinks: {drinks}
-          </Text>
-        </View>
-      )
-    
-
-
-  }
 
 
   const rightSwipe = (progress, dragX) => {
@@ -82,30 +81,31 @@ const ItemBox = (props) => {
   //   );
   // };
 
-    return (
-      <Swipeable renderRightActions={rightSwipe} overshootRight={false}>
-        <TouchableWithoutFeedback
-        // onPress={() => {
-        //   isSelected(state);
-        //   alert(state);
-        // }}
-        >
-          <View style={styles.container}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingVertical: 5,
-              }}
-            >
-              <GetDataOne/>
-             
-            </View>
-          
+  return (
+    <Swipeable renderRightActions={rightSwipe} overshootRight={false}>
+      <TouchableWithoutFeedback
+      // onPress={() => {
+      //   isSelected(state);
+      //   alert(state);
+      // }}
+      >
+        <View style={styles.container}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingVertical: 5,
+            }}
+          >
+            
+           {GetDataOne(names)}
           </View>
-        </TouchableWithoutFeedback>
-      </Swipeable>
-    );
+        
+        </View>
+      </TouchableWithoutFeedback>
+    </Swipeable>
+  );
+ 
   
 
 };
@@ -143,3 +143,4 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
+ */
