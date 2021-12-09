@@ -30,9 +30,11 @@ import {
 import { Tab, Text, TabView } from 'react-native-elements';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Home, Menu, ReviewDetails, ViewOrder } from "../screen";
+import Cart from "./Cart/Cart";
 import { COLORS, icons } from "../../constants";
 import { NavigationContainer } from "@react-navigation/native";
 import Coffee from "../components/Coffee";
+import CoffeeTest from "./Cart/CoffeeTest";
 
 // create/display what each tab/icon is/do
 const BottomTab = createBottomTabNavigator();
@@ -72,7 +74,7 @@ const CustomerMenuScreen = () => {
 
         <BottomTab.Screen
           name="Cart"
-          component={ReviewDetails}
+          component={Cart}
           options={{
             tabBarIcon: ({ focused }) => (
               <Image

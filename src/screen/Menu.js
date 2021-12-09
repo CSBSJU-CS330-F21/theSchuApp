@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text} from "react-native";
 import { Tab, TabView } from 'react-native-elements';
 import { FilledButton} from "../components/FilledButton";
@@ -7,9 +7,13 @@ import Tea from "../components/Tea";
 import Refreshers from "../components/Refreshers";
 import ClassicDrinks from "../components/ClassicDrinks";
 import { ScrollView } from "react-native-gesture-handler";
+import Cart from "./Cart/Cart";
+import CoffeeTest from "./Cart/CoffeeTest";
+
 
 const Menu = () => {
   const [index, setIndex] = React.useState(0);
+  const [count, setCount] = useState();
   return (
     <>
       <Tab
@@ -21,7 +25,7 @@ const Menu = () => {
         }}
         variant="primary"
       >
-        <Tab.Item
+        {/* <Tab.Item
           title="Coffee"
           titleStyle={{ fontSize: 10 }}
           icon={{ name: "cafe-outline", type: "ionicon" }}
@@ -40,12 +44,18 @@ const Menu = () => {
           title="Refreshers"
           titleStyle={{ fontSize: 10 }}
           icon={{ name: "pint-outline", type: "ionicon" }}
+        /> */}
+        <Tab.Item
+          title="Test"
+          titleStyle={{ fontSize: 10 }}
+          icon={{ name: "pint-outline", type: "ionicon" }}
         />
       </Tab>
       <ScrollView>
       <TabView value={index} onChange={setIndex} animationType="spring">
-        <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
-          <Coffee/>
+        {/* <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
+        
+          <Coffee />
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
           <Tea/>
@@ -55,6 +65,9 @@ const Menu = () => {
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
           <Refreshers/>
+        </TabView.Item> */}
+        <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
+          <CoffeeTest/>
         </TabView.Item>
       </TabView>
       </ScrollView>

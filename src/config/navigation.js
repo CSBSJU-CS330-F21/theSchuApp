@@ -6,7 +6,10 @@ import Home from "../screen/Home";
 import EmployeeHomeScreen from "../screen/EmployeeHomeScreen";
 import LoginScreen from "../screen/LoginScreen";
 import CustomerMenuScreen from "../screen/CustomerMenuScreen";
+import Cart from "../screen/Cart/Cart";
 import { Menu, ReviewDetails, ViewOrder } from "../screen";
+import CoffeeTest from "../screen/Cart/CoffeeTest";
+import Products from "../screen/Products";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +27,9 @@ const SchuAppScreen = () => (
     <SchuAppStack.Screen name="ReviewDetails" component={ReviewDetails} />
     <SchuAppStack.Screen name="View Order" component={ViewOrder} />
     <SchuAppStack.Screen name="LoginScreen" component={LoginScreen} />
+    <SchuAppStack.Screen name="Cart" component={Cart} />
+    <SchuAppStack.Screen name="CoffeeTest" component={CoffeeTest} />
+    <SchuAppStack.Screen name="Products" component={Products} />
     <SchuAppStack.Screen
       name="CustomerMenuScreen"
       component={CustomerMenuScreen}

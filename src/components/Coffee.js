@@ -1,8 +1,19 @@
   import React, { useState } from 'react';
   import { StyleSheet, View, Text, SafeAreaView, Image, ScrollView, Button, Modal, TouchableOpacity, Alert, Pressable} from 'react-native';
   import firebase from '../../database/firebase-db'
+  
 
   export default function Coffee() {
+    // const[cartList, setCartList] = React.useState([]);
+
+    // function addingToList (GetCoffeeOne){
+
+    //   const newItem ={
+    //     drink: GetCoffeeOne.name,
+        
+    //   }
+    //   cartList.push(newItem)
+    // }
     
     return (
       <SafeAreaView> 
@@ -116,7 +127,7 @@
   };
 
   //GET coffee data from database
-  const GetCoffeeOne = () => {
+  export const GetCoffeeOne = (props) => {
     var name = '';
     var flavors = '';
     var count = 0;
@@ -140,7 +151,6 @@
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {setModalVisible(!modalVisible); count = count + 1;
@@ -332,7 +342,7 @@
   //WILL BE A FUTURE FEATURE
   //DELETE data from the database
   //INSERT data from the data base
-  const insertCoffee = () => {
+  const insertOrder = () => {
     //insert new data into firebase
     setTimeout(() => {
       firebase.database().ref('taxes/').set({
@@ -358,3 +368,17 @@
     });
 
   }
+
+
+  {/* <View>
+          <Text>{page === PAGE_PRODUCTS && <Products addToCart={addToCart} />}</Text>
+          <Text>{page === PAGE_CART && renderCart()}</Text>
+        </View>
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_CART)} title="cart" />
+          <Text>{cart.length}</Text>
+        </View>
+
+        <View style={{ borderWidth: 1, alignItems: 'center', position: 'absolute-right', bottom: -100 }}>
+          <Button onPress={() => navigateTo(PAGE_PRODUCTS)} title="products" />
+        </View> */}
