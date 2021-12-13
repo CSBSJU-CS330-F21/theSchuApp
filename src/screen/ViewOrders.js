@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import { SafeAreaView, TouchableOpacity, View, StyleSheet, FlatList, Text, Button, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Button,
+  ScrollView,
+} from "react-native";
 //import data from "../../data";
 import firebase from "../../database/firebase-db";
 import Order from "../components/Order";
 import FlatButton from "../DeleteOrderButton";
 import OrderListData from "../OrderListData";
+import DeleteButton from "../DeleteOrderButton";
 
-const ViewOrders = () => {
-
+const ViewOrders = ({ order }) => {
   // Declare a new list variable, which we'.ll call set
   // const [lists, setLists] = useState([]);
 
@@ -28,24 +37,18 @@ const ViewOrders = () => {
   //       }])
   //     })
   // })
-  
+
   // };
- 
+
   return (
-    
     <ScrollView>
-
-
       <View>
-        <FlatButton text = 'Delete First Order'/>
-          <OrderListData/>
-
+        {/* <DeleteButton orderNum="{order}" /> */}
+        <Text>{order}</Text>
+        <OrderListData />
       </View>
-
     </ScrollView>
-
   );
 };
 
 export default ViewOrders;
-

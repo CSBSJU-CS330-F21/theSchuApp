@@ -1,21 +1,66 @@
-import React from 'react';
-import {View, Text} from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import DeleteButton from "../DeleteOrderButton";
+import firebase from "firebase";
 
-function Order({orderName, orderDrink}){
+function Order({ orderName, orderDrink, orderNum }) {
+  const [selected, setSelected] = React.useState("");
+  const [dataBaseRef, setdataBaseRef] = React.useState("");
 
-        return(
-        
+  //function to delete item
+
+  function convertRef() {
+    const path = `orders/${selected}`;
+    // setdataBaseRef(currentId);
+    console.log(path);
+    var removing = firebase.database().ref(path);
+    removing.remove();
+  }
+
+  return (
+    <View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              setSelected(orderNum);
+              console.log(selected);
+            }}
+          >
             <View>
-                <Text>
-                    __________________________________________________{"\n"}
-                    Name: {orderName}{"\n"}
-                    Drinks: {orderDrink}
+              <Text>
+                OrderNumber: {orderNum}
+                {"\n"}
+                Name: {orderName}
+                {"\n"}
+                Drink:
+              </Text>
+              {orderDrink.map((item, index) => (
+                <Text key={index} style={{ alignSelf: "auto" }}>
+                  {"\t"}
+                  {item}
                 </Text>
+              ))}
+              <Text>
+                __________________________________________________{"\n"}
+              </Text>
             </View>
-        )
-    
-
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => convertRef()}>
+            <View
+              style={{
+                backgroundColor: "red",
+              }}
+            >
+              <Text>delete</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
 }
 
-export default Order
-
+export default Order;
