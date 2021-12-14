@@ -14,68 +14,75 @@ import {
   Pressable,
 } from "react-native";
 
-export default function Products({ addToCart }) {
-  const [coffeeProducts] = useState([
+export default function classicDrinks({ addToCart }) {
+  const [classicDrinksProducts] = useState([
     {
-      name: "specialy drinks",
+      name: "Daily Brew",
+      price: "$2.02",
       falvors: "lkajdfs",
     },
     {
-      name: "The Schu",
-      falvors: "Dark Chocolate, Toasted Marshmallow",
+      name: "Watermelon Cucumber",
+      price: "$4.79",
+      falvors: "N/A",
     },
+    {
+      name: "Wildberry hisbuscus ",
+      price: "$4.79",
+      falvors: "N/A",
+    },
+    {
+      name: "Blood Orange Coconut",
+      price: "$4.79",
+      falvors: "N/A",
+    },
+    {
+      name: "Strawberry Acai",
+      price: "$4.79",
+      falvors: "N/A",
+    },
+    {
+      name: "Chai Latte",
+      price: "$3.66",
+      falvors: "N/A",
+    },
+    {
+      name: "Apple Cider",
+      price: "$2.65",
+      falvors: "N/A",
+    },
+    {
+      name: "Hot Chocolate",
+      price: "$3.24",
+      falvors: "N/A",
+    },
+    {
+      name: "Matcha Latte",
+      price: "$3.71",
+      falvors: "N/A",
+    },
+    {
+      name: "Latte",
+      price: "$3.39",
+      falvors: "N/A",
+    }
   ]);
 
-  const [products] = useState([
-    {
-      name: "The Schu",
-      falvors: "Dark Chocolate, Toasted Marshmallow",
-    },
-    {
-      name: "SJU Senate",
-      falvors: "White Chocolate, Caramel",
-    },
-    {
-      name: "Chapel Walk",
-      falvors: "Caramel Almond",
-    },
-    {
-      name: "Turtle Mocha",
-      falvors: "Dark Chocolate, Caramel",
-    },
-    {
-      name: "The Echo",
-      falvors: "White Chocolate, Almond, Vanilla",
-    },
-    {
-      name: "The Link",
-      falvors: "White & Dark Chocolate",
-    },
-    {
-      name: "Andes Mint Extreme",
-      falvors: "Dark Chocolate, Mint",
-    },
-    {
-      name: "Abbey Road",
-      falvors: "Dark Chocolate, Raspberry",
-    },
-    {
-      //id a number pass when swiped they know what specfic ID to delete
-      name: "Sexton Sunrise",
-      falvors: "Carmel, Vanilla",
-    },
-  ]);
+  
   return (
     <>
       <View>
-        <Text style={styles.drinkTitle}>Coffee</Text>
+        <Text style={styles.drinkTitle}>Classic Drinks</Text>
         <Text>
-          {products.map((product, index) => (
+          {classicDrinksProducts.map((product, index) => (
             <View key={index}>
               <View style={styles.container}>
-                <Text>{product.name}</Text>
+                <Text style={{alignSelf:"center", alignItems:"center", justifyContent:"center",fontSize:14, fontWeight:"800"}}>{product.name}</Text>
                 {/* This section will display flavors <Text>{product.price}</Text> */}
-                <Button onPress={() => addToCart(product)} title="+" />
+                
+                <TouchableOpacity style={{backgroundColor:"#2196F3", padding:5, marginTop:5, borderRadius:10}} onPress={() => addToCart(product)}>
+                  <Text style={{fontWeight:"700", color:"white", fontSize:13}}>ADD</Text>
+                </TouchableOpacity>
               </View>
             </View>
           ))}{" "}
@@ -110,10 +117,11 @@ const styles = StyleSheet.create({
     left: 0,
   },
   container: {
-    width: 150,
+    width: 170,
     height: 70,
     justifyContent: "center",
     alignItems: "center",
+    alignSelf:"center",
     backgroundColor: "white",
     borderColor: "black",
     borderStyle: "solid",
@@ -126,8 +134,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 20,
+    marginHorizontal: 12,
+    marginVertical:20
     
   },
   button: {

@@ -15,10 +15,10 @@ import {
   Pressable,
 } from "react-native";
 import firebase from "../../../database/firebase-db";
-import Coffee from "../../../Data/Coffee";
 import { Tab, TabView } from "react-native-elements";
-import Products from "../Products";
-import ProductTest from "../ProductTest";
+import ClassicDrinks from "../ClassicDrinks";
+import SpecialtyDrinks from "../SpecialtyDrinks";
+import Teas from "../Teas";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   createBottomTabNavigator,
@@ -29,59 +29,45 @@ export default function CoffeeTest({ navigation }) {
   const BottomTab = createBottomTabNavigator();
   const PAGE_PRODUCTS = "products";
   const PAGE_CART = "cart";
+  const PAGE_SPECIAL = "specialtyDrinks"
+  const PAGE_CLASSIC = "classicDrinks";
+  const PAGE_TEA = "tea";
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
-  const [products] = useState([
-    {
-      name: "Battery",
-      price: "3.99",
-    },
-    {
-      name: "Blanket",
-      price: "10.99",
-    },
-  ]);
 
   const addToCart = (product) => {
     console.log("we are in");
     setCart([...cart, { ...product }]);
   };
 
-  const removeFromCart = (productToRemove) => {
-    setCart(cart.filter((product) => product !== productToRemove));
-  };
-  const renderProducts = () => (
-    <>
-      <Text>Products:</Text>
-      {products.map((product, index) => (
-        <View key={index}>
-          <Text>{product.name}</Text>
-          <Text>{product.price}</Text>
-
-          <Button onPress={() => addToCart(product)} title="button">
-            Add to cart
-          </Button>
-        </View>
-      ))}{" "}
-    </>
-  );
 
   const renderCart = () => (
     <>
-      <Text>Cart:</Text>
+    <ScrollView>
+      <Text style={{fontSize: 26,
+    fontWeight: "800",
+    margin: 10,}}>Cart</Text>
       {cart.map((product, index) => (
-        <View key={index}>
-          <Text>{product.name}</Text>
-          <Text>{product.price}</Text>
+        <View style={{alignSelf:"center", padding: 5, width:250,margin:7, backgroundColor:"white", borderRadius:10,shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,}} key={index}>
+          <View style={{padding:5}}>
+          <Text style={{alignSelf:"center", fontSize:13, fontWeight:"800", color:"black"}}>{product.name}</Text>
+          <Text style={{alignSelf:"center", fontSize:13, fontWeight:"800", color:"black"}}>{product.price}</Text>
+          </View>
 
-          <Button onPress={() => addToCart(product)} title="button">
-            Add to cart
-          </Button>
-          <Button title="remove" onPress={() => removeFromCart(product)}>
-            Remove
-          </Button>
+        <TouchableOpacity style={{alignSelf:"center", backgroundColor:"#2196F3", padding:5, borderRadius:10}} onPress={() => removeFromCart(product)}>
+          <Text style={{fontSize:13, fontWeight:"800", color:"white"}}>REMOVE</Text>
+        </TouchableOpacity>
+          
         </View>
       ))}
+      </ScrollView>
     </>
   );
   const navigateTo = (nextPage) => {
@@ -102,16 +88,25 @@ export default function CoffeeTest({ navigation }) {
 
   
 
-  const coffeeProd = () => (
+  const classicDrinks = () => (
     <>
-      <Text>{<Products addToCart={addToCart} />}</Text>
+      <Text>{<ClassicDrinks addToCart={addToCart} />}</Text>
     </>
   );
-  const coffeeProdTwo = () => (
+  const teas = () => (
     <>
-      <Text>{<ProductTest addToCart={addToCart} />}</Text>
+      <Text>{<Teas addToCart={addToCart} />}</Text>
     </>
   );
+  const specialtyDrinks = () => (
+    <>
+      <Text>{<SpecialtyDrinks addToCart={addToCart} />}</Text>
+    </>
+  )
+  const removeFromCart = (productToRemove) => {
+    setCart(cart.filter((product) => product !== productToRemove));
+  };
+
   //INSERT data from the data base
   const insertOrder = () => {
     const orderNumber = Math.floor(Math.random() * 100000);
@@ -151,43 +146,48 @@ export default function CoffeeTest({ navigation }) {
       >
         <Tab.Item
           title="Menu"
-          titleStyle={{ fontSize: 10 }}
+          titleStyle={{ fontSize: 12, fontWeight:"800" }}
           icon={{ name: "menu", type: "ionicon" }}
         />
         <Tab.Item
-          title={"CARTTESTTEST" + " " + "(" + cart.length + ")"}
-          titleStyle={{ fontSize: 10 }}
+          title={"CART" + " " + "(" + cart.length + ")"}
+          titleStyle={{ fontSize: 12, fontWeight:"800" }}
           icon={{ name: "cart-outline", type: "ionicon" }}
         />
       </Tab>
       <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
-          <View style={{ alignSelf: "center" }}>
-            <View>
-              <Button
-                onPress={() => navigateTo(PAGE_PRODUCTS)}
-                title="products"
-              />
-              <Button onPress={() => navigateTo(PAGE_CART)} title="coffee" />
+          <View>
+            <View style={{ flexDirection:"row", alignSelf:"center" }}>
+              <TouchableOpacity style={styles.selection} onPress={() => navigateTo(PAGE_CLASSIC)}>
+                <Text style={{fontSize:15, fontWeight:"900",  color: "white" }}>CLASSIC DRINKS</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.selection} onPress={() => navigateTo(PAGE_TEA)}>
+                <Text style={{fontSize:15, fontWeight:"900",  color: "white" }}>TEAS</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.selection} onPress={() => navigateTo(PAGE_SPECIAL)}>
+                <Text style={{fontSize:15, fontWeight:"900",  color: "white" }}>SPECIALTY DRINKS</Text>
+              </TouchableOpacity>
             </View>
 
             <View>
-              <Text>{page === PAGE_PRODUCTS && coffeeProd()}</Text>
-              <Text>{page === PAGE_CART && coffeeProdTwo()}</Text>
+              <Text>{page === PAGE_CLASSIC && classicDrinks()}</Text>
+              <Text>{page === PAGE_SPECIAL && specialtyDrinks()}</Text>
+              <Text>{page === PAGE_TEA && teas()}</Text>
+              
             </View>
 
-            {/* <Text>{<Products addToCart={addToCart} />}</Text> */}
           </View>
         </TabView.Item>
 
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
           <View>
-            <ScrollView style={{ height: "85%", backgroundColor: "pink" }}>
+            <View style={{ height: "85%" }}>
               {renderCart()}
               {/**  We are going to create a Modal with Text Input. */}
 
               {/** This is our modal component containing textinput and a button */}
-            </ScrollView>
+            </View>
             <Modal
               animationType="slide"
               transparent
@@ -277,6 +277,17 @@ export default function CoffeeTest({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  selection:{
+    justifyContent:"center",
+    alignItems:"center", 
+    paddingLeft:5, 
+    paddingRight:5, 
+    height:40, 
+    backgroundColor:"#2196F3", 
+    borderRadius: 10,
+    marginTop:15,
+    margin:5
+  },
   container: {
     paddingTop: 20,
   },
