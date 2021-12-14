@@ -9,6 +9,7 @@ import {
   Image,
   Modal,
   ScrollView,
+  Alert,
 } from "react-native";
 import { icons } from "../../../constants";
 import Swipeable from "react-native-gesture-handler/Swipeable";
