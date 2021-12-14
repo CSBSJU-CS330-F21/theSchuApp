@@ -99,7 +99,7 @@ export default function Home({navigation}) {
             source={
                 require('./../../assets/clouds.png')
         }>
-<SafeAreaView>
+<View>
 <View style={
                 styles.container
             }>
@@ -158,7 +158,7 @@ export default function Home({navigation}) {
                         Press to Continue</Text>
                 </TouchableOpacity>
             </View>
-</SafeAreaView>
+</View>
             
         </ImageBackground>
 
