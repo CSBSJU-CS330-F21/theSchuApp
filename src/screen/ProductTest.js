@@ -26,51 +26,13 @@ export default function Products({ addToCart }) {
     },
   ]);
 
-  const [products] = useState([
-    {
-      name: "The Schu",
-      falvors: "Dark Chocolate, Toasted Marshmallow",
-    },
-    {
-      name: "SJU Senate",
-      falvors: "White Chocolate, Caramel",
-    },
-    {
-      name: "Chapel Walk",
-      falvors: "Caramel Almond",
-    },
-    {
-      name: "Turtle Mocha",
-      falvors: "Dark Chocolate, Caramel",
-    },
-    {
-      name: "The Echo",
-      falvors: "White Chocolate, Almond, Vanilla",
-    },
-    {
-      name: "The Link",
-      falvors: "White & Dark Chocolate",
-    },
-    {
-      name: "Andes Mint Extreme",
-      falvors: "Dark Chocolate, Mint",
-    },
-    {
-      name: "Abbey Road",
-      falvors: "Dark Chocolate, Raspberry",
-    },
-    {
-      //id a number pass when swiped they know what specfic ID to delete
-      name: "Sexton Sunrise",
-      falvors: "Carmel, Vanilla",
-    },
-  ]);
+  
   return (
     <>
       <View>
         <Text style={styles.drinkTitle}>Coffee</Text>
         <Text>
-          {products.map((product, index) => (
+          {coffeeProducts.map((product, index) => (
             <View key={index}>
               <View style={styles.container}>
                 <Text>{product.name}</Text>

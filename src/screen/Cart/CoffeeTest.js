@@ -18,6 +18,7 @@ import firebase from "../../../database/firebase-db";
 import Coffee from "../../../Data/Coffee";
 import { Tab, TabView } from "react-native-elements";
 import Products from "../Products";
+import ProductTest from "../ProductTest";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   createBottomTabNavigator,
@@ -30,15 +31,61 @@ export default function CoffeeTest({ navigation }) {
   const PAGE_CART = "cart";
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
+  const [products] = useState([
+    {
+      name: "Battery",
+      price: "3.99",
+    },
+    {
+      name: "Blanket",
+      price: "10.99",
+    },
+  ]);
 
-  // appends cart array
   const addToCart = (product) => {
-    console.log("added to cart");
+    console.log("we are in");
     setCart([...cart, { ...product }]);
   };
 
   const removeFromCart = (productToRemove) => {
     setCart(cart.filter((product) => product !== productToRemove));
+  };
+  const renderProducts = () => (
+    <>
+      <Text>Products:</Text>
+      {products.map((product, index) => (
+        <View key={index}>
+          <Text>{product.name}</Text>
+          <Text>{product.price}</Text>
+
+          <Button onPress={() => addToCart(product)} title="button">
+            Add to cart
+          </Button>
+        </View>
+      ))}{" "}
+    </>
+  );
+
+  const renderCart = () => (
+    <>
+      <Text>Cart:</Text>
+      {cart.map((product, index) => (
+        <View key={index}>
+          <Text>{product.name}</Text>
+          <Text>{product.price}</Text>
+
+          <Button onPress={() => addToCart(product)} title="button">
+            Add to cart
+          </Button>
+          <Button title="remove" onPress={() => removeFromCart(product)}>
+            Remove
+          </Button>
+        </View>
+      ))}
+    </>
+  );
+  const navigateTo = (nextPage) => {
+    setPage(nextPage);
   };
 
   // This is to manage Modal State
@@ -53,25 +100,18 @@ export default function CoffeeTest({ navigation }) {
     setModalVisible(!isModalVisible);
   };
 
-  const renderCart = () => (
+  
+
+  const coffeeProd = () => (
     <>
-      {cart.map((product, index) => (
-        <View key={index}>
-          <Text>{product.name}</Text>
-          {/* add flavors */}
-          <Text>{product.price}</Text>
-          <Button
-            style={{ height: 60 }}
-            title="remove"
-            onPress={() => removeFromCart(product)}
-          >
-            Remove
-          </Button>
-        </View>
-      ))}
+      <Text>{<Products addToCart={addToCart} />}</Text>
     </>
   );
-
+  const coffeeProdTwo = () => (
+    <>
+      <Text>{<ProductTest addToCart={addToCart} />}</Text>
+    </>
+  );
   //INSERT data from the data base
   const insertOrder = () => {
     const orderNumber = Math.floor(Math.random() * 100000);
@@ -122,8 +162,21 @@ export default function CoffeeTest({ navigation }) {
       </Tab>
       <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ backgroundColor: "white", width: "100%" }}>
-          <View style={{alignSelf:"center"}}>
-            <Text>{<Products addToCart={addToCart} />}</Text>
+          <View style={{ alignSelf: "center" }}>
+            <View>
+              <Button
+                onPress={() => navigateTo(PAGE_PRODUCTS)}
+                title="products"
+              />
+              <Button onPress={() => navigateTo(PAGE_CART)} title="coffee" />
+            </View>
+
+            <View>
+              <Text>{page === PAGE_PRODUCTS && coffeeProd()}</Text>
+              <Text>{page === PAGE_CART && coffeeProdTwo()}</Text>
+            </View>
+
+            {/* <Text>{<Products addToCart={addToCart} />}</Text> */}
           </View>
         </TabView.Item>
 
@@ -135,7 +188,6 @@ export default function CoffeeTest({ navigation }) {
 
               {/** This is our modal component containing textinput and a button */}
             </ScrollView>
-
             <Modal
               animationType="slide"
               transparent
@@ -153,27 +205,50 @@ export default function CoffeeTest({ navigation }) {
                   />
 
                   {/** This button is responsible to close the modal */}
-                  <TouchableOpacity style={{
-                  textAlign: "center",
-                  alignContent: "center",
-                  justifyContent: "center",
-                  alignSelf: "center",
-                }}>
+                  <TouchableOpacity
+                    style={{
+                      textAlign: "center",
+                      alignContent: "center",
+                      justifyContent: "center",
+                      alignSelf: "center",
+                    }}
+                  >
                     <View style={styles.buttoneModalView}>
-                      <Text style={{alignSelf: "center", fontSize: 20, fontWeight: "700", color: "white" }} onPress={toggleModalVisibility}>Close</Text>
+                      <Text
+                        style={{
+                          alignSelf: "center",
+                          fontSize: 20,
+                          fontWeight: "700",
+                          color: "white",
+                        }}
+                        onPress={toggleModalVisibility}
+                      >
+                        Close
+                      </Text>
                     </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{
-                  textAlign: "center",
-                  alignContent: "center",
-                  justifyContent: "center",
-                  alignSelf: "center",
-                }}>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      textAlign: "center",
+                      alignContent: "center",
+                      justifyContent: "center",
+                      alignSelf: "center",
+                    }}
+                  >
                     <View style={styles.buttoneModalView}>
-                      <Text style={{alignSelf: "center", fontSize: 20, fontWeight: "700", color: "white" }} onPress={() => insertOrder()}>Submit</Text>
+                      <Text
+                        style={{
+                          alignSelf: "center",
+                          fontSize: 20,
+                          fontWeight: "700",
+                          color: "white",
+                        }}
+                        onPress={() => insertOrder()}
+                      >
+                        Submit
+                      </Text>
                     </View>
-                    </TouchableOpacity>
-                  
+                  </TouchableOpacity>
                 </View>
               </View>
             </Modal>
@@ -226,7 +301,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   modalView: {
-    
     margin: 50,
     backgroundColor: "white",
     borderRadius: 20,
@@ -301,7 +375,7 @@ const styles = StyleSheet.create({
     width: "100%",
     fontSize: 20,
     fontWeight: "600",
-    margin:20,
+    margin: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -310,7 +384,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    
-    
-  }
+  },
 });
