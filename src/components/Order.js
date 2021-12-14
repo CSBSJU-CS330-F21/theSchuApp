@@ -19,11 +19,11 @@ function Order({ orderName, orderDrink, orderNum }) {
 
   return (
     <View>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <View>
         <View>
           <TouchableOpacity
             onPress={() => {
-              setSelected(orderNum);
+              setSelected(orderName);
               console.log(selected);
             }}
           >

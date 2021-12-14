@@ -73,10 +73,3 @@ function OrderListData() {
 }
 
 export default OrderListData;
-
-<FlatList
-  data={orderList}
-  renderItem={({ item, index }) => {
-    return <OrderList data={item} />;
-  }}
-/>;
